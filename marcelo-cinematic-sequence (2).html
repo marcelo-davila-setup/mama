@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo D'Ávila - Experiência Ultra Cirúrgica</title>
+    
+    <!-- Preload crítico -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Patrick+Hand&display=swap" as="style">
+    <link rel="preload" href="https://i.ibb.co/wZD8BGYd/Sem-nome-800-x-1200-px.jpg" as="image">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --color-bg: #F8F5F0;
+            --color-text-primary: #33353A;
+            --color-text-secondary: #5A5F66;
+            --color-cta: #1A2035;
+            --color-accent: #D4AF37;
+            --pure-white: #ffffff;
+            --success-green: #10b981;
+            --error-red: #ef4444;
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #E8C547 100%);
+            --gradient-luxury: linear-gradient(135deg, #F8F5F0 0%, #E8E5E0 50%, #D8D5D0 100%);
+            --shadow-card: 0 6px 20px rgba(26, 32, 53, 0.1);
+            --shadow-premium: 0 12px 40px rgba(212, 175, 55, 0.2);
+            --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-cinematic: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-magic: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gradient-luxury);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* === MAIN CONTAINER === */
+        .main-container {
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* === HERO TEXT PHASE === */
+        .hero-text {
+            opacity: 1;
+            transform: translateY(0);
+            transition: var(--transition-cinematic);
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+        
+        .hero-text.fade-out {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.95);
+            pointer-events: none;
+        }
+        
+        .hero-title {
+            font-size: 34px;
+            font-weight: 900;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            animation: titleReveal 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.1);
+        }
+        
+        @keyframes titleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            line-height: 1.5;
+            animation: subtitleReveal 1s ease-out 0.4s both;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        
+        @keyframes subtitleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* === AVATAR CONTAINER ULTRA PREMIUM === */
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            transform: scale(0.8) rotateY(15deg);
+            transition: var(--transition-magic);
+            background: var(--pure-white);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: var(--shadow-premium);
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-gold);
+            border-radius: 25px 25px 0 0;
+        }
+        
+        .avatar-container.revealed {
+            opacity: 1;
+            transform: scale(1) rotateY(0deg);
+        }
+        
+        .avatar {
+            width: 300px;
+            height: 375px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(212, 175, 55, 0.4);
+            transition: var(--transition-magic);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* EFEITOS PREMIUM DO AVATAR */
+        @keyframes avatarBlink {
+            0%, 100% { 
+                filter: brightness(1) contrast(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+            50% { 
+                filter: brightness(0.85) contrast(1.1);
+                box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            }
+        }
+        
+        .avatar.piscando {
+            animation: avatarBlink 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes avatarFalando {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            25% { 
+                transform: scale(1.01);
+                filter: brightness(1.05);
+            }
+            75% { 
+                transform: scale(1.01);
+                filter: brightness(1.05);
+            }
+        }
+        
+        .avatar.falando {
+            animation: avatarFalando 0.8s infinite ease-in-out;
+        }
+        
+        /* EXPANSION ULTRA CINEMATOGRÁFICA */
+        .avatar.expanding {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) scale(2.8) !important;
+            z-index: 9999 !important;
+            border-radius: 50% !important;
+            transition: all 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            filter: brightness(1.1) contrast(1.1) !important;
+            box-shadow: 0 20px 80px rgba(212, 175, 55, 0.4) !important;
+        }
+        
+        .avatar.contracting {
+            transform: translate(-50%, -50%) scale(1) !important;
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            border-radius: 20px !important;
+            z-index: 2 !important;
+            filter: brightness(1) contrast(1) !important;
+        }
+        
+        /* === PAPEL DINÂMICO ULTRA PREMIUM === */
+        #mensagem-papel {
+            position: absolute;
+            top: 74.2%;
+            left: 48.2%;
+            transform: translate(-50%, -50%);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 11.5px;
+            width: 135px;
+            text-align: center;
+            line-height: 1.5;
+            white-space: pre-line;
+            color: #2a2a2a;
+            transition: var(--transition-smooth);
+            z-index: 3;
+        }
+        
+        /* CORES REGIONAIS DO PAPEL - REMOVIDAS */
+        .papel-mg, .papel-rs, .papel-ba, .papel-pe, .papel-rj, .papel-sp {
+            /* Sem background - texto direto na folha */
+        }
+        
+        @keyframes papelEscrevendo {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            25% { transform: translate(-50%, -50%) rotate(0.8deg); }
+            75% { transform: translate(-50%, -50%) rotate(-0.8deg); }
+        }
+        
+        .papel-escrevendo {
+            animation: papelEscrevendo 0.3s infinite ease-in-out;
+        }
+        
+        .destaque-ola {
+            font-size: 13.5px;
+            font-weight: bold;
+            color: #1A2035;
+            text-shadow: 0.5px 0.5px 1px rgba(255, 255, 255, 0.8);
+        }
+        
+        .cidade-estilo {
+            font-weight: bold;
+            font-style: italic;
+            color: var(--color-accent);
+            text-shadow: 0.5px 0.5px 1px rgba(255, 255, 255, 0.8);
+        }
+        
+        .nome-personalizado {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--success-green);
+            text-shadow: 0.5px 0.5px 1px rgba(255, 255, 255, 0.8);
+            animation: nomeReveal 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes nomeReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        /* === EXPANSION OVERLAY MÁGICO === */
+        .expansion-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 0%, rgba(26, 32, 53, 0.95) 100%);
+            backdrop-filter: blur(25px);
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.8s ease;
+            pointer-events: none;
+        }
+        
+        .expansion-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .overlay-message {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 52px;
+            color: white;
+            text-align: center;
+            line-height: 1.3;
+            transform: translateY(80px) scale(0.8);
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            max-width: 90vw;
+        }
+        
+        .expansion-overlay.active .overlay-message {
+            transform: translateY(0) scale(1);
+        }
+        
+        .overlay-ola {
+            font-size: 58px;
+            font-weight: bold;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 15px;
+            animation: olaFloat 2s ease-in-out infinite;
+        }
+        
+        @keyframes olaFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .overlay-greeting {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            animation: greetingPulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes greetingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .overlay-cidade {
+            font-weight: bold;
+            font-style: italic;
+            color: var(--color-accent);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: cidadeGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes cidadeGlow {
+            0%, 100% { 
+                color: var(--color-accent);
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            }
+            50% { 
+                color: #FFD700;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+        }
+        
+        /* === PARTÍCULAS MÁGICAS === */
+        .particles-magic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .particles-magic.active {
+            opacity: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: particleFloat 4s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            25% {
+                transform: translateY(-50px) scale(1.2);
+                opacity: 1;
+            }
+            75% {
+                transform: translateY(-120px) scale(0.8);
+                opacity: 0.5;
+            }
+        }
+        
+        /* === FORM SECTION ULTRA PREMIUM === */
+        .form-section {
+            background: var(--pure-white);
+            border-radius: 30px;
+            padding: 45px 35px;
+            margin-top: 50px;
+            box-shadow: var(--shadow-premium);
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            width: 100%;
+            max-width: 420px;
+            opacity: 0;
+            transform: translateY(150px) scale(0.9) rotateX(15deg);
+            transition: var(--transition-magic);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--gradient-gold);
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .form-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: formGlow 6s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes formGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .form-section.revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotateX(0deg);
+        }
+        
+        .form-title {
+            font-size: 26px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--color-text-primary);
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .name-input {
+            width: 100%;
+            padding: 20px 25px;
+            border: 3px solid var(--color-accent);
+            border-radius: 18px;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+            background: var(--pure-white);
+            transition: var(--transition-fast);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+        }
+        
+        .name-input:focus {
+            outline: none;
+            border-color: var(--color-cta);
+            transform: scale(1.03);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.3);
+            background: rgba(248, 245, 240, 0.5);
+        }
+        
+        .continue-btn {
+            background: linear-gradient(135deg, var(--color-cta) 0%, #2A3B5C 100%);
+            color: var(--pure-white);
+            border: none;
+            padding: 22px 40px;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition-fast);
+            letter-spacing: -0.3px;
+            box-shadow: 0 8px 25px rgba(26, 32, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .continue-btn:hover::before {
+            left: 100%;
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(26, 32, 53, 0.4);
+        }
+        
+        .continue-btn:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .continue-btn.success {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            animation: successPulse 1.5s infinite;
+        }
+        
+        @keyframes successPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 12px 35px rgba(16, 185, 129, 0.5);
+            }
+        }
+        
+        /* === MOBILE ULTRA PREMIUM === */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .avatar {
+                width: 260px;
+                height: 325px;
+            }
+            
+            #mensagem-papel {
+                font-size: 9.5px;
+                width: 120px;
+            }
+            
+            .overlay-message {
+                font-size: 38px;
+                padding: 0 20px;
+            }
+            
+            .overlay-ola {
+                font-size: 42px;
+            }
+            
+            .form-section {
+                margin: 20px;
+                padding: 35px 25px;
+            }
+            
+            .form-title {
+                font-size: 22px;
+            }
+            
+            .name-input {
+                font-size: 16px;
+                padding: 18px 22px;
+            }
+            
+            .continue-btn {
+                font-size: 16px;
+                padding: 20px 35px;
+            }
+            
+            .avatar-container {
+                padding: 20px;
+            }
+        }
+        
+        /* === ACCESSIBILITY ULTRA === */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* === LOADING STATES === */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+        
+        /* === OFFLINE INDICATOR === */
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10001;
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+        
+        .offline-indicator.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Accessibility -->
+    <div id="aria-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">🔌 Modo Offline</div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Text Phase -->
+        <div class="hero-text" id="heroText">
+            <h1 class="hero-title">MARCELO D'ÁVILA</h1>
+            <p class="hero-subtitle">
+                Crie automações, sites e links que <strong>FALAM</strong> – sem programação, 100% na nuvem.
+            </p>
+        </div>
+        
+        <!-- Avatar Container -->
+        <div class="avatar-container" id="avatarContainer">
+            <img 
+                src="https://i.ibb.co/wZD8BGYd/Sem-nome-800-x-1200-px.jpg" 
+                alt="Marcelo D'Ávila segurando papel com mensagem personalizada" 
+                class="avatar piscando"
+                id="avatar"
+            />
+            <div id="mensagem-papel">⌛ Escrevendo...</div>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="form-section" id="formSection">
+            <h2 class="form-title">Como posso te chamar?</h2>
+            <input 
+                type="text" 
+                class="name-input" 
+                id="nameInput" 
+                placeholder="Digite seu primeiro nome"
+                maxlength="25"
+                autocomplete="given-name"
+                aria-label="Digite seu primeiro nome"
+            />
+            <button 
+                class="continue-btn" 
+                id="continueBtn" 
+                type="button"
+                aria-label="Continuar para próxima etapa"
+            >
+                Continuar
+            </button>
+        </div>
+    </div>
+    
+    <!-- Particles Magic -->
+    <div class="particles-magic" id="particlesMagic"></div>
+    
+    <!-- Expansion Overlay -->
+    <div class="expansion-overlay" id="expansionOverlay">
+        <div class="overlay-message" id="overlayMessage">
+            <span class="overlay-ola">Olá...</span>
+            <span class="overlay-greeting" id="overlayGreeting">Uai sô</span>
+            <span class="overlay-cidade" id="overlayCidade">É de Timóteo?</span>
+        </div>
+    </div>
+
+    <script>
+        // === GLOBAL VARIABLES ULTRA ===
+        let sequenceInProgress = false;
+        let isOnline = navigator.onLine;
+        let audioContext = null;
+        let userData = {
+            name: '',
+            city: 'sua cidade',
+            state: 'MG',
+            greeting: 'Uai sô',
+            greetingColor: '#d93a3a',
+            timeOfDay: 'Bom dia',
+            isDetected: false
+        };
+        
+        // === DOM ELEMENTS ===
+        const heroText = document.getElementById('heroText');
+        const avatarContainer = document.getElementById('avatarContainer');
+        const avatar = document.getElementById('avatar');
+        const mensagemPapel = document.getElementById('mensagem-papel');
+        const formSection = document.getElementById('formSection');
+        const nameInput = document.getElementById('nameInput');
+        const continueBtn = document.getElementById('continueBtn');
+        const expansionOverlay = document.getElementById('expansionOverlay');
+        const overlayMessage = document.getElementById('overlayMessage');
+        const overlayGreeting = document.getElementById('overlayGreeting');
+        const overlayCidade = document.getElementById('overlayCidade');
+        const announcements = document.getElementById('aria-announcements');
+        const particlesMagic = document.getElementById('particlesMagic');
+        const offlineIndicator = document.getElementById('offlineIndicator');
+        
+        // === MAPEAMENTO NACIONAL COMPLETO - 27 ESTADOS ===
+        const saudacoesUltra = {
+            // === REGIÃO SUDESTE ===
+            "Minas Gerais": {
+                greetings: ["Uai sô", "Sô", "Ô sô"],
+                color: "#d93a3a",
+                foods: ["pão de queijo", "doce de leite"],
+                papel: "papel-mg"
+            },
+            "São Paulo": {
+                greetings: ["E aí", "Firmeza", "Beleza"],
+                color: "#444444",
+                foods: ["coxinha", "pastel"],
+                papel: "papel-sp"
+            },
+            "Rio de Janeiro": {
+                greetings: ["Falaê", "E aí", "Beleza"],
+                color: "#228f52",
+                foods: ["açaí", "feijoada"],
+                papel: "papel-rj"
+            },
+            "Espírito Santo": {
+                greetings: ["Capixaba", "E aí", "Beleza"],
+                color: "#16A085",
+                foods: ["moqueca", "torta capixaba"],
+                papel: "papel-es"
+            },
+            
+            // === REGIÃO SUL ===
+            "Rio Grande do Sul": {
+                greetings: ["Tchê", "Bah tchê", "Tri"],
+                color: "#2b5d87", 
+                foods: ["chimarrão", "churrasco"],
+                papel: "papel-rs"
+            },
+            "Paraná": {
+                greetings: ["Ô piá", "Capaz", "Bah"],
+                color: "#3498DB",
+                foods: ["barreado", "pinhão"],
+                papel: "papel-pr"
+            },
+            "Santa Catarina": {
+                greetings: ["Manezinho", "Tchê", "Bah"],
+                color: "#2ECC71",
+                foods: ["sequência de camarão", "marreco"],
+                papel: "papel-sc"
+            },
+            
+            // === REGIÃO NORDESTE ===
+            "Bahia": {
+                greetings: ["Ôxe", "Oxente", "Visse"],
+                color: "#da8e2a",
+                foods: ["acarajé", "cocada"],
+                papel: "papel-ba"
+            },
+            "Pernambuco": {
+                greetings: ["Eita", "Visse", "Oxe"],
+                color: "#913adb",
+                foods: ["tapioca", "bolo de rolo"],
+                papel: "papel-pe"
+            },
+            "Ceará": {
+                greetings: ["Arre égua", "Véi", "Rapaz"],
+                color: "#F39C12",
+                foods: ["baião de dois", "cuscuz"],
+                papel: "papel-ce"
+            },
+            "Paraíba": {
+                greetings: ["Vixe", "Oxente", "Cabra"],
+                color: "#E67E22",
+                foods: ["cuscuz", "tapioca"],
+                papel: "papel-pb"
+            },
+            "Rio Grande do Norte": {
+                greetings: ["Vixe", "Rapaz", "Cabra"],
+                color: "#D35400",
+                foods: ["ginga com tapioca", "carne de sol"],
+                papel: "papel-rn"
+            },
+            "Alagoas": {
+                greetings: ["Rapaz", "Vixe", "Cabra bom"],
+                color: "#E74C3C",
+                foods: ["sururu", "tapioca"],
+                papel: "papel-al"
+            },
+            "Sergipe": {
+                greetings: ["Rapaz", "Vixe", "Cabra"],
+                color: "#C0392B",
+                foods: ["caranguejo", "tapioca"],
+                papel: "papel-se"
+            },
+            "Maranhão": {
+                greetings: ["Rapaz", "Vixe Maria", "Caboclo"],
+                color: "#8E44AD",
+                foods: ["arroz de cuxá", "torta de camarão"],
+                papel: "papel-ma"
+            },
+            "Piauí": {
+                greetings: ["Vixe", "Rapaz", "Cabra"],
+                color: "#9B59B6",
+                foods: ["paçoca de carne seca", "cajuína"],
+                papel: "papel-pi"
+            },
+            
+            // === REGIÃO CENTRO-OESTE ===
+            "Goiás": {
+                greetings: ["Ô trem", "Sô", "Uai"],
+                color: "#A0522D",
+                foods: ["pequi", "empadão goiano"],
+                papel: "papel-go"
+            },
+            "Mato Grosso": {
+                greetings: ["Ô trem", "Pantaneiro", "Tchê"],
+                color: "#8B4513",
+                foods: ["pacu assado", "farofa de banana"],
+                papel: "papel-mt"
+            },
+            "Mato Grosso do Sul": {
+                greetings: ["Tchê", "Ô trem", "Bah"],
+                color: "#CD853F",
+                foods: ["sobá", "peixe pintado"],
+                papel: "papel-ms"
+            },
+            "Distrito Federal": {
+                greetings: ["E aí", "Beleza", "Firmeza"],
+                color: "#5D4037",
+                foods: ["mix nacional", "comida de boteco"],
+                papel: "papel-df"
+            },
+            
+            // === REGIÃO NORTE ===
+            "Pará": {
+                greetings: ["Mano", "Véi", "Rapaz"],
+                color: "#27AE60",
+                foods: ["açaí", "tacacá"],
+                papel: "papel-pa"
+            },
+            "Amazonas": {
+                greetings: ["Mano", "Caboclo", "Véi"],
+                color: "#229954",
+                foods: ["pirarucu", "cupuaçu"],
+                papel: "papel-am"
+            },
+            "Acre": {
+                greetings: ["Véi", "Mano", "Caboclo"],
+                color: "#1E8449",
+                foods: ["pato no tucumã", "farinha"],
+                papel: "papel-ac"
+            },
+            "Rondônia": {
+                greetings: ["Véi", "Mano", "Tchê"],
+                color: "#148F77",
+                foods: ["peixe pintado", "farinha"],
+                papel: "papel-ro"
+            },
+            "Roraima": {
+                greetings: ["Mano", "Véi", "Caboclo"],
+                color: "#117A65",
+                foods: ["peixe tucumã", "farinha"],
+                papel: "papel-rr"
+            },
+            "Amapá": {
+                greetings: ["Mano", "Véi", "Rapaz"],
+                color: "#0E6B5D",
+                foods: ["açaí", "peixe"],
+                papel: "papel-ap"
+            },
+            "Tocantins": {
+                greetings: ["Véi", "Sô", "Rapaz"],
+                color: "#0A5D55",
+                foods: ["pequi", "peixe"],
+                papel: "papel-to"
+            }
+        };
+        
+        // === TIME DETECTION ===
+        function detectTimeOfDay() {
+            const hour = new Date().getHours();
+            if (hour >= 5 && hour < 12) return "Bom dia";
+            if (hour >= 12 && hour < 18) return "Boa tarde";
+            return "Boa noite";
+        }
+        
+        // === NETWORK STATUS ===
+        function updateNetworkStatus() {
+            isOnline = navigator.onLine;
+            if (!isOnline) {
+                offlineIndicator.classList.add('show');
+                console.log('📶 Modo offline detectado');
+            } else {
+                offlineIndicator.classList.remove('show');
+                console.log('📶 Conexão restaurada');
+            }
+        }
+        
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        
+        // === ACCESSIBILITY ULTRA ===
+        function announce(message, priority = 'polite') {
+            announcements.setAttribute('aria-live', priority);
+            announcements.textContent = message;
+            setTimeout(() => {
+                announcements.textContent = '';
+                announcements.setAttribute('aria-live', 'polite');
+            }, 3000);
+        }
+        
+        // === HAPTIC FEEDBACK PREMIUM ===
+        function hapticFeedback(pattern = 'light') {
+            if (!navigator.vibrate) return;
+            
+            const patterns = {
+                light: [50],
+                medium: [100],
+                heavy: [100, 50, 100],
+                success: [50, 25, 50, 25, 100],
+                writing: [20, 10, 20, 10, 20]
+            };
+            
+            navigator.vibrate(patterns[pattern] || patterns.light);
+        }
+        
+        // === AUDIO SYNTHESIS PREMIUM ===
+        function createWritingSound() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.warn('🔊 AudioContext não suportado');
+                    return null;
+                }
+            }
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.05, audioContext.currentTime + 0.02);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+            
+            return oscillator;
+        }
+        
+        // === TTS SYSTEM ULTRA ===
+        function speakUltra(text, callback) {
+            if (!('speechSynthesis' in window)) {
+                console.warn('🗣️ TTS não suportado');
+                if (callback) callback();
+                return;
+            }
+            
+            speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "pt-BR";
+            utterance.rate = 1.0;
+            utterance.pitch = 1.1;
+            utterance.volume = 0.9;
+            
+            // Busca melhor voz brasileira
+            const voices = speechSynthesis.getVoices();
+            const brazilianVoice = voices.find(v => 
+                v.lang.includes('pt-BR') && (
+                    v.name.includes('Google') ||
+                    v.name.includes('Microsoft') ||
+                    v.name.includes('Luciana')
+                )
+            ) || voices.find(v => v.lang.includes('pt-BR'));
+            
+            if (brazilianVoice) utterance.voice = brazilianVoice;
+            
+            utterance.onstart = () => {
+                avatar.classList.add('falando');
+                console.log('🗣️ Falando:', text);
+            };
+            
+            utterance.onend = () => {
+                avatar.classList.remove('falando');
+                if (callback) callback();
+            };
+            
+            utterance.onerror = () => {
+                avatar.classList.remove('falando');
+                if (callback) callback();
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+        
+        // === PARTICLES SYSTEM MÁGICO ===
+        function createMagicParticles() {
+            const particleCount = window.innerWidth < 768 ? 20 : 35;
+            particlesMagic.innerHTML = '';
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 4 + 's';
+                particle.style.animationDuration = (3 + Math.random() * 2) + 's';
+                
+                // Cores variadas
+                const colors = ['#D4AF37', '#E8C547', '#FFD700', '#F4D03F'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesMagic.appendChild(particle);
+            }
+        }
+        
+        function showMagicParticles() {
+            createMagicParticles();
+            particlesMagic.classList.add('active');
+        }
+        
+        function hideMagicParticles() {
+            particlesMagic.classList.remove('active');
+            setTimeout(() => particlesMagic.innerHTML = '', 600);
+        }
+        
+        // === TYPEWRITER ULTRA PREMIUM ===
+        function typewriterUltra(element, htmlContent, speed = 45, callback) {
+            let i = 0;
+            element.innerHTML = "";
+            mensagemPapel.classList.add('papel-escrevendo');
+            
+            function typeChar() {
+                if (i < htmlContent.length) {
+                    // Som de escrita
+                    if (i % 3 === 0) {
+                        createWritingSound();
+                        hapticFeedback('writing');
+                    }
+                    
+                    element.innerHTML = htmlContent.substring(0, i + 1);
+                    i++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    mensagemPapel.classList.remove('papel-escrevendo');
+                    if (callback) callback();
+                }
+            }
+            
+            typeChar();
+        }
+        
+        // === LOCATION DETECTION ULTRA ===
+        async function detectLocationUltra() {
+            userData.timeOfDay = detectTimeOfDay();
+            
+            if (!isOnline) {
+                console.log('📍 Modo offline - usando fallback');
+                setupOfflineFallback();
+                return;
+            }
+            
+            try {
+                console.log('📍 Detectando localização...');
+                
+                const response = await fetch("https://ipinfo.io?token=50aa9ee780c6f0", {
+                    timeout: 5000
+                });
+                
+                if (!response.ok) throw new Error('Falha na API');
+                
+                const data = await response.json();
+                
+                userData.city = data.city || "sua cidade";
+                userData.state = data.region || "MG";
+                userData.isDetected = true;
+                
+                const regionData = saudacoesUltra[userData.state] || saudacoesUltra["Minas Gerais"];
+                userData.greeting = regionData.greetings[Math.floor(Math.random() * regionData.greetings.length)];
+                userData.greetingColor = regionData.color;
+                
+                // Aplica classe CSS regional ao papel
+                mensagemPapel.classList.add(regionData.papel);
+                
+                console.log('📍 Localização detectada:', userData);
+                
+            } catch (error) {
+                console.warn('⚠️ Erro na detecção:', error);
+                setupOfflineFallback();
+            }
+        }
+        
+        // === FALLBACK OFFLINE INTELIGENTE ===
+        function setupOfflineFallback() {
+            userData.city = "aí";
+            userData.greeting = "Tudo bem";
+            userData.greetingColor = "#666666";
+            userData.isDetected = false;
+            
+            // Classe neutra para o papel
+            mensagemPapel.classList.add('papel-mg');
+            
+            console.log('🔄 Fallback offline configurado');
+        }
+        
+        // === AVATAR EXPANSION ULTRA CINEMATOGRÁFICA ===
+        function startAvatarExpansionUltra() {
+            if (sequenceInProgress) return;
+            sequenceInProgress = true;
+            
+            console.log('🎬 EXPANSÃO ULTRA CINEMATOGRÁFICA INICIADA!');
+            announce('Avatar expandindo magicamente', 'assertive');
+            
+            // Para de piscar
+            avatar.classList.remove('piscando');
+            
+            // Haptic + Particles
+            hapticFeedback('heavy');
+            showMagicParticles();
+            
+            // Expansão mágica
+            avatar.classList.add('expanding');
+            
+            // Overlay após 600ms
+            setTimeout(() => {
+                expansionOverlay.classList.add('active');
+                
+                // Atualiza conteúdo do overlay
+                if (userData.isDetected) {
+                    overlayGreeting.textContent = userData.greeting;
+                    overlayGreeting.style.color = userData.greetingColor;
+                    overlayCidade.textContent = `É de ${userData.city}?`;
+                } else {
+                    overlayGreeting.textContent = userData.greeting;
+                    overlayGreeting.style.color = userData.greetingColor;
+                    overlayCidade.textContent = "Seja bem-vindo!";
+                }
+                
+                // TTS da mensagem
+                const mensagemFalada = userData.isDetected 
+                    ? `${userData.timeOfDay}. ${userData.greeting}, é de ${userData.city}?`
+                    : `${userData.timeOfDay}. ${userData.greeting}? Seja bem-vindo!`;
+                    
+                speakUltra(mensagemFalada);
+                
+            }, 600);
+            
+            // Hold dramático de 3.5s, depois contração
+            setTimeout(() => {
+                console.log('🎬 Iniciando contração mágica');
+                
+                // Remove overlay e partículas
+                expansionOverlay.classList.remove('active');
+                hideMagicParticles();
+                
+                // Contração suave
+                setTimeout(() => {
+                    avatar.classList.remove('expanding');
+                    avatar.classList.add('contracting');
+                    
+                    // Remove classe de contração
+                    setTimeout(() => {
+                        avatar.classList.remove('contracting');
+                        sequenceInProgress = false;
+                        
+                        // Mostra formulário
+                        showFormSectionUltra();
+                        
+                    }, 1400);
+                }, 400);
+                
+            }, 4600); // 600ms + 4000ms = 4600ms total
+        }
+        
+        // === FORM SECTION ULTRA ===
+        function showFormSectionUltra() {
+            console.log('📋 Revelando formulário ultra premium');
+            announce('Formulário de contato revelado com estilo premium');
+            
+            // Reveal com animação mágica
+            formSection.classList.add('revealed');
+            
+            // Scroll cinematográfico
+            setTimeout(() => {
+                formSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center',
+                    inline: 'nearest'
+                });
+                
+                // Focus com delay
+                setTimeout(() => {
+                    nameInput.focus();
+                    hapticFeedback('light');
+                }, 1000);
+                
+            }, 800);
+        }
+        
+        // === PAPER MESSAGE ULTRA ===
+        function animatePaperMessageUltra() {
+            let textoHTML, textoFalado;
+            
+            if (userData.isDetected) {
+                textoHTML = `<span class="destaque-ola">Olá...</span>\n<span style="color:${userData.greetingColor}; font-weight:bold;">${userData.greeting}</span>\n<span class="cidade-estilo">É de ${userData.city}?</span>`;
+                textoFalado = `Olá. ${userData.greeting}, é de ${userData.city}?`;
+            } else {
+                textoHTML = `<span class="destaque-ola">Olá...</span>\n<span style="color:${userData.greetingColor}; font-weight:bold;">${userData.greeting}?</span>\n<span class="cidade-estilo">Seja bem-vindo!</span>`;
+                textoFalado = `Olá. ${userData.greeting}? Seja bem-vindo!`;
+            }
+            
+            typewriterUltra(mensagemPapel, textoHTML, 50, () => {
+                console.log('✍️ Mensagem no papel finalizada');
+                
+                // TTS sincronizado
+                setTimeout(() => {
+                    speakUltra(textoFalado, () => {
+                        // Expansão após TTS
+                        setTimeout(() => {
+                            startAvatarExpansionUltra();
+                        }, 800);
+                    });
+                }, 500);
+            });
+        }
+        
+        // === NOME PERSONALIZADO MÁGICO ===
+        function showPersonalizedName(name) {
+            console.log('✨ Escrevendo nome personalizado:', name);
+            
+            // Para qualquer animação em curso
+            mensagemPapel.classList.remove('papel-escrevendo');
+            
+            // Mensagem personalizada
+            const mensagemPersonalizada = userData.isDetected 
+                ? `<span class="nome-personalizado">Prazer, ${name}!</span>\n<span style="font-size:10px; color:#666;">De ${userData.city} 😊</span>`
+                : `<span class="nome-personalizado">Prazer, ${name}!</span>\n<span style="font-size:10px; color:#666;">Seja bem-vindo! 😊</span>`;
+            
+            // Animação de escrita
+            typewriterUltra(mensagemPapel, mensagemPersonalizada, 40, () => {
+                // TTS da saudação
+                speakUltra(`Prazer, ${name}!`);
+                
+                // Haptic de sucesso
+                hapticFeedback('success');
+                
+                // Mini-expansão do avatar (2s)
+                setTimeout(() => {
+                    avatar.style.transform = 'scale(1.05)';
+                    avatar.style.filter = 'brightness(1.1)';
+                    
+                    setTimeout(() => {
+                        avatar.style.transform = 'scale(1)';
+                        avatar.style.filter = 'brightness(1)';
+                    }, 1500);
+                }, 500);
+            });
+        }
+        
+        // === MAIN SEQUENCE ULTRA ===
+        function startMainSequenceUltra() {
+            console.log('🚀 SEQUÊNCIA PRINCIPAL ULTRA INICIADA!');
+            
+            // FASE 1: Hero text visível por 1.5s
+            setTimeout(() => {
+                console.log('📝 Transição: Hero → Avatar');
+                
+                // Fade out hero
+                heroText.classList.add('fade-out');
+                
+                // Reveal avatar
+                setTimeout(() => {
+                    avatarContainer.classList.add('revealed');
+                    announce('Avatar de Marcelo D\'Ávila revelado com papel mágico');
+                    
+                    // Inicia animação do papel
+                    setTimeout(() => {
+                        animatePaperMessageUltra();
+                    }, 1000);
+                    
+                }, 500);
+                
+            }, 1500); // 1.5s exatos
+        }
+        
+        // === FORM HANDLING ULTRA ===
+        function handleFormSubmitUltra() {
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                nameInput.style.borderColor = 'var(--error-red)';
+                nameInput.style.animation = 'shake 0.5s ease-in-out';
+                nameInput.placeholder = 'Por favor, digite seu nome';
+                announce('Erro: Nome é obrigatório', 'assertive');
+                hapticFeedback('heavy');
+                
+                setTimeout(() => {
+                    nameInput.style.borderColor = 'var(--color-accent)';
+                    nameInput.style.animation = '';
+                    nameInput.placeholder = 'Digite seu primeiro nome';
+                }, 2000);
+                return;
+            }
+            
+            if (name.length < 2) {
+                nameInput.style.borderColor = 'var(--error-red)';
+                nameInput.placeholder = 'Nome muito curto';
+                announce('Nome deve ter pelo menos 2 caracteres', 'assertive');
+                hapticFeedback('heavy');
+                
+                setTimeout(() => {
+                    nameInput.style.borderColor = 'var(--color-accent)';
+                    nameInput.placeholder = 'Digite seu primeiro nome';
+                }, 2000);
+                return;
+            }
+            
+            // Salva nome
+            userData.name = name;
+            
+            // Estado de sucesso
+            continueBtn.classList.add('success');
+            continueBtn.textContent = '✓ Perfeito!';
+            nameInput.style.borderColor = 'var(--success-green)';
+            announce(`Olá ${name}! Nome registrado com sucesso`);
+            
+            // Mostra nome personalizado no papel
+            setTimeout(() => {
+                showPersonalizedName(name);
+            }, 800);
+            
+            // Simula próxima etapa
+            setTimeout(() => {
+                alert(`🎬 Fantástico, ${name}! Sua experiência cinematográfica ultra premium foi um sucesso total! ✨\n\nPróxima etapa: Descobrir como criar suas próprias automações que FALAM!`);
+            }, 4000);
+        }
+        
+        // === KEYBOARD SHORTCUTS ===
+        document.addEventListener('keydown', function(e) {
+            // Enter no input
+            if (e.target === nameInput && e.key === 'Enter') {
+                handleFormSubmitUltra();
+            }
+            
+            // Esc para cancelar animações (debug)
+            if (e.key === 'Escape' && sequenceInProgress) {
+                console.log('🛑 Sequência cancelada via ESC');
+                location.reload();
+            }
+        });
+        
+        // === EVENT LISTENERS ULTRA ===
+        continueBtn.addEventListener('click', handleFormSubmitUltra);
+        
+        // Focus enhancement
+        nameInput.addEventListener('focus', () => {
+            hapticFeedback('light');
+        });
+        
+        // === PERFORMANCE OPTIMIZATIONS ===
+        // Preload crítico
+        window.addEventListener('load', function() {
+            const img = new Image();
+            img.src = 'https://i.ibb.co/wZD8BGYd/Sem-nome-800-x-1200-px.jpg';
+            console.log('🖼️ Imagem crítica pré-carregada');
+        });
+        
+        // Lazy load voices
+        if ('speechSynthesis' in window) {
+            speechSynthesis.addEventListener('voiceschanged', function() {
+                console.log('🗣️ Vozes carregadas:', speechSynthesis.getVoices().length);
+            });
+        }
+        
+        // === INITIALIZATION ULTRA ===
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🎬 SISTEMA ULTRA CIRÚRGICO INICIALIZADO!');
+            announce('Experiência cinematográfica ultra premium carregando');
+            
+            // Status da rede
+            updateNetworkStatus();
+            
+            // Detecção de localização
+            await detectLocationUltra();
+            
+            // Inicia sequência principal
+            setTimeout(() => {
+                startMainSequenceUltra();
+            }, 1200);
+        });
+        
+        // === CLEANUP ULTRA ===
+        window.addEventListener('beforeunload', function() {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel();
+            }
+            if (audioContext) {
+                audioContext.close();
+            }
+        });
+        
+        // === DEBUG MODE ===
+        if (window.location.hash === '#debug') {
+            console.log('🔧 Modo Debug Ativado');
+            window.userData = userData;
+            window.startSequence = startMainSequenceUltra;
+            window.showName = showPersonalizedName;
+        }
+        
+        console.log('🎬✨ MARCELO D\'ÁVILA - EXPERIÊNCIA ULTRA CIRÚRGICA CARREGADA! ✨🎬');
+        console.log('🚀 Preparado para devastar a concorrência! 💥');
+    </script>
+</body>
+</html>
